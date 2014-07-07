@@ -21,7 +21,33 @@ class ContactsApp < Sinatra::Base
   end
 
   get "/" do
-    "Hello week 5"
+    erb :root
   end
+
+  get "/login" do
+    # @entity = @user_database.find(session[:user_id])[:username]
+    # erb :login, :locals => {:entity => @entity}
+
+    erb :login
+  end
+
+  get "/homepage" do
+    erb :homepage
+  end
+
+  post "/login" do
+    # entity = find_user
+
+    entity = {:username => params[:username], :password => params[:password]}
+    session[:user_id] = entity[:id]
+    redirect "/homepage"
+
+  end
+
+  def find_user
+    #this iterates through the @user_database array, finds the hash that has the target name and password, and returns it outside the array (that's what the [0] does). This is flawed right now because you could make a user with the same username but a different password. ALSO, I modified the user_database.rb file and removed the .dup from @user in the all method. That's the only way I could get select to work!
+    @user_database.all.select { |x| x[:username] == params[:username] && x[:password] == params[:password] }[0]
+  end
+
 
 end
