@@ -1,4 +1,23 @@
 <h1>Contacts</h1>
 
+<% unless session[:user] == nil %>
+
+<ul>
+  <% @contacts.each do |contact_hash| %>
+  <li> <%= contact_hash[:name] + " " + contact_hash[:email] %></li>
+   <% end %>
+</ul>
+
+<h1>Welcome, <%= session[:user] %></h1>
+
+  <form action="/logout" method="post">
+    <input type="submit" value="logout" />
+  </form>
+
+<% end %>
+
+<% if session[:user] == nil %>
 
 <a href="/login"><button>Login</button></a>
+
+<% end %>

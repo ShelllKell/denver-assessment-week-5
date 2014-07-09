@@ -3,7 +3,7 @@ class Database
     @entities = []
   end
 
-  def insert(entity)
+  def insert(entity) #user
     entity = entity.dup
     entity[:id] = next_id
 
