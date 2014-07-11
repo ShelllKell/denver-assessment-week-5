@@ -2,22 +2,24 @@
 
 <% unless session[:user] == nil %>
 
-<ul>
-  <% @contacts.each do |contact_hash| %>
-  <li> <%= contact_hash[:name] + " " + contact_hash[:email] %></li>
-   <% end %>
-</ul>
+  <ul>
+    <% @contacts.each do |contact_hash| %>
+    <li> <%= contact_hash[:name] + " - " + contact_hash[:email] %></li>
+     <% end %>
+  </ul>
 
-<h1>Welcome, <%= session[:user] %></h1>
+
+<h1>Welcome, <%= session[:user] %>!</h1>
 
   <form action="/logout" method="post">
-    <input type="submit" value="logout" />
+    <input type="submit" class="button" value="Logout" />
   </form>
 
 <% end %>
 
+
 <% if session[:user] == nil %>
 
-<a href="/login"><button>Login</button></a>
+  <a href="login"><button>Login</button></a>
 
 <% end %>

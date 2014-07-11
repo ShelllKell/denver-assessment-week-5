@@ -29,9 +29,6 @@ class ContactsApp < Sinatra::Base
     erb :login
   end
 
-  get "/logout" do
-
-  end
 
   post "/login" do
     session[:user] = params[:username]
@@ -42,7 +39,4 @@ class ContactsApp < Sinatra::Base
     session.delete(:user)
     redirect "/"
   end
-
-
-
 end
